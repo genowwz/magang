@@ -9,42 +9,42 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=nunito:300,400,500,600,700&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased bg-gray-50 text-gray-900">
+<body class="font-sans antialiased bg-white text-gray-900">
     <div class="min-h-screen">
         <!-- Navigation -->
-        <nav class="bg-white shadow-sm border-b border-gray-200">
+        <nav class="bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100 sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16">
+                <div class="flex justify-between h-20">
                     <!-- Logo and primary navigation -->
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="flex-shrink-0 flex items-center">
-                            <a href="{{ route('home') }}" class="text-xl font-bold text-primary-600">
+                            <a href="{{ route('home') }}" class="text-2xl font-bold text-gray-900 hover:text-primary-600 transition-colors duration-300">
                                 ComplaintHub
                             </a>
                         </div>
-                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <div class="hidden sm:ml-10 sm:flex sm:space-x-8">
                             <a href="{{ route('home') }}" 
-                               class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm transition-colors {{ request()->routeIs('home') ? 'border-primary-500 text-primary-600' : '' }}">
+                               class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-lg font-medium text-base transition-all duration-300 {{ request()->routeIs('home') ? 'text-primary-600 bg-primary-50' : 'hover:bg-gray-50' }}">
                                 Home
                             </a>
                             <a href="{{ route('complaints.create') }}" 
-                               class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm transition-colors {{ request()->routeIs('complaints.create') ? 'border-primary-500 text-primary-600' : '' }}">
+                               class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-lg font-medium text-base transition-all duration-300 {{ request()->routeIs('complaints.create') ? 'text-primary-600 bg-primary-50' : 'hover:bg-gray-50' }}">
                                 Submit Complaint
                             </a>
                             @auth
                                 <a href="{{ route('complaints.index') }}" 
-                                   class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm transition-colors {{ request()->routeIs('complaints.index') ? 'border-primary-500 text-primary-600' : '' }}">
+                                   class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-lg font-medium text-base transition-all duration-300 {{ request()->routeIs('complaints.index') ? 'text-primary-600 bg-primary-50' : 'hover:bg-gray-50' }}">
                                     My Complaints
                                 </a>
                                 @if(auth()->user()->is_admin)
                                     <a href="{{ route('admin.dashboard') }}" 
-                                       class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm transition-colors {{ request()->routeIs('admin.*') ? 'border-primary-500 text-primary-600' : '' }}">
-                                        Admin Panel
+                                       class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-lg font-medium text-base transition-all duration-300 {{ request()->routeIs('admin.*') ? 'text-primary-600 bg-primary-50' : 'hover:bg-gray-50' }}">
+                                        Dashboard
                                     </a>
                                 @endif
                             @endauth
@@ -52,31 +52,31 @@
                     </div>
 
                     <!-- Secondary navigation -->
-                    <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
                         @auth
                             <!-- User dropdown -->
-                            <div class="ml-3 relative">
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-sm text-gray-700">{{ auth()->user()->name }}</span>
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ auth()->user()->title_color }}">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-right">
+                                    <div class="text-sm font-medium text-gray-900">{{ auth()->user()->name }}</div>
+                                    <div class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium {{ auth()->user()->title_color }}">
                                         {{ auth()->user()->title }}
-                                    </span>
-                                    <form method="POST" action="{{ route('logout') }}" class="inline">
-                                        @csrf
-                                        <button type="submit" class="text-gray-400 hover:text-gray-600 transition-colors">
-                                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                                            </svg>
-                                        </button>
-                                    </form>
+                                    </div>
                                 </div>
+                                <form method="POST" action="{{ route('logout') }}" class="inline">
+                                    @csrf
+                                    <button type="submit" class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-all duration-300">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                        </svg>
+                                    </button>
+                                </form>
                             </div>
                         @else
-                            <div class="flex items-center space-x-4">
-                                <a href="{{ route('login') }}" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium transition-colors">
+                            <div class="flex items-center space-x-3">
+                                <a href="{{ route('login') }}" class="text-gray-600 hover:text-primary-600 px-4 py-2 rounded-lg font-medium text-base transition-all duration-300 hover:bg-gray-50">
                                     Login
                                 </a>
-                                <a href="{{ route('register') }}" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                                <a href="{{ route('register') }}" class="btn-primary">
                                     Register
                                 </a>
                             </div>
@@ -84,9 +84,9 @@
                     </div>
 
                     <!-- Mobile menu button -->
-                    <div class="-mr-2 flex items-center sm:hidden">
+                    <div class="flex items-center sm:hidden">
                         <button type="button" 
-                                class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                                class="p-2 rounded-lg text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-300"
                                 onclick="toggleMobileMenu()">
                             <span class="sr-only">Open main menu</span>
                             <svg class="block h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,68 +98,82 @@
             </div>
 
             <!-- Mobile menu -->
-            <div class="sm:hidden hidden" id="mobile-menu">
-                <div class="pt-2 pb-3 space-y-1">
-                    <a href="{{ route('home') }}" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+            <div class="sm:hidden hidden bg-white border-t border-gray-100" id="mobile-menu">
+                <div class="px-4 pt-4 pb-3 space-y-2">
+                    <a href="{{ route('home') }}" class="block px-4 py-3 rounded-lg text-gray-600 hover:text-primary-600 hover:bg-primary-50 font-medium text-base transition-all duration-300 {{ request()->routeIs('home') ? 'text-primary-600 bg-primary-50' : '' }}">
                         Home
                     </a>
-                    <a href="{{ route('complaints.create') }}" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                    <a href="{{ route('complaints.create') }}" class="block px-4 py-3 rounded-lg text-gray-600 hover:text-primary-600 hover:bg-primary-50 font-medium text-base transition-all duration-300 {{ request()->routeIs('complaints.create') ? 'text-primary-600 bg-primary-50' : '' }}">
                         Submit Complaint
                     </a>
                     @auth
-                        <a href="{{ route('complaints.index') }}" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                        <a href="{{ route('complaints.index') }}" class="block px-4 py-3 rounded-lg text-gray-600 hover:text-primary-600 hover:bg-primary-50 font-medium text-base transition-all duration-300 {{ request()->routeIs('complaints.index') ? 'text-primary-600 bg-primary-50' : '' }}">
                             My Complaints
                         </a>
                         @if(auth()->user()->is_admin)
-                            <a href="{{ route('admin.dashboard') }}" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-                                Admin Panel
+                            <a href="{{ route('admin.dashboard') }}" class="block px-4 py-3 rounded-lg text-gray-600 hover:text-primary-600 hover:bg-primary-50 font-medium text-base transition-all duration-300 {{ request()->routeIs('admin.*') ? 'text-primary-600 bg-primary-50' : '' }}">
+                                Dashboard
                             </a>
                         @endif
                     @endauth
                 </div>
+                
                 @auth
-                    <div class="pt-4 pb-3 border-t border-gray-200">
-                        <div class="flex items-center px-4">
-                            <div class="ml-3">
-                                <div class="text-base font-medium text-gray-800">{{ auth()->user()->name }}</div>
-                                <div class="text-sm font-medium text-gray-500">{{ auth()->user()->email }}</div>
+                    <div class="px-4 py-4 border-t border-gray-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="text-base font-medium text-gray-900">{{ auth()->user()->name }}</div>
+                                <div class="text-sm text-gray-500">{{ auth()->user()->email }}</div>
+                                <div class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium {{ auth()->user()->title_color }} mt-1">
+                                    {{ auth()->user()->title }}
+                                </div>
                             </div>
                         </div>
-                        <div class="mt-3 space-y-1">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 w-full text-left">
-                                    Sign out
-                                </button>
-                            </form>
-                        </div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full px-4 py-3 rounded-lg text-left text-gray-600 hover:text-red-600 hover:bg-red-50 font-medium text-base transition-all duration-300">
+                                Sign out
+                            </button>
+                        </form>
                     </div>
                 @else
-                    <div class="pt-4 pb-3 border-t border-gray-200">
-                        <div class="space-y-1">
-                            <a href="{{ route('login') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
-                                Login
-                            </a>
-                            <a href="{{ route('register') }}" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
-                                Register
-                            </a>
-                        </div>
+                    <div class="px-4 py-4 border-t border-gray-100 space-y-2">
+                        <a href="{{ route('login') }}" class="block px-4 py-3 rounded-lg text-gray-600 hover:text-primary-600 hover:bg-primary-50 font-medium text-base transition-all duration-300">
+                            Login
+                        </a>
+                        <a href="{{ route('register') }}" class="block px-4 py-3 rounded-lg text-white bg-primary-600 hover:bg-primary-700 font-medium text-base transition-all duration-300 text-center">
+                            Register
+                        </a>
                     </div>
                 @endauth
             </div>
         </nav>
 
         <!-- Page content -->
-        <main>
+        <main class="min-h-screen">
             @if(session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-7xl mx-auto mt-4" role="alert">
-                    <span class="block sm:inline">{{ session('success') }}</span>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+                    <div class="bg-accent-50 border border-accent-200 text-accent-800 px-6 py-4 rounded-xl shadow-sm animate-fade-in" role="alert">
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-accent-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="font-medium">{{ session('success') }}</span>
+                        </div>
+                    </div>
                 </div>
             @endif
 
             @if(session('error'))
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-7xl mx-auto mt-4" role="alert">
-                    <span class="block sm:inline">{{ session('error') }}</span>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+                    <div class="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-xl shadow-sm animate-fade-in" role="alert">
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="font-medium">{{ session('error') }}</span>
+                        </div>
+                    </div>
                 </div>
             @endif
 
@@ -167,34 +181,40 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-white border-t border-gray-200 mt-auto">
-            <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <footer class="bg-gray-50 border-t border-gray-100 mt-20">
+            <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="md:col-span-1">
+                        <div class="text-2xl font-bold text-gray-900 mb-4">ComplaintHub</div>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Making complaint resolution simple, transparent, and efficient for everyone.
+                        </p>
+                    </div>
                     <div>
-                        <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
-                        <ul class="mt-4 space-y-4">
-                            <li><a href="{{ route('home') }}" class="text-base text-gray-500 hover:text-gray-900">Home</a></li>
-                            <li><a href="{{ route('complaints.create') }}" class="text-base text-gray-500 hover:text-gray-900">Submit Complaint</a></li>
+                        <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Platform</h3>
+                        <ul class="space-y-3">
+                            <li><a href="{{ route('home') }}" class="text-gray-600 hover:text-primary-600 transition-colors duration-300">Home</a></li>
+                            <li><a href="{{ route('complaints.create') }}" class="text-gray-600 hover:text-primary-600 transition-colors duration-300">Submit Complaint</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
-                        <ul class="mt-4 space-y-4">
-                            <li><a href="#" class="text-base text-gray-500 hover:text-gray-900">Help Center</a></li>
-                            <li><a href="#" class="text-base text-gray-500 hover:text-gray-900">Contact Us</a></li>
+                        <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Support</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-600 hover:text-primary-600 transition-colors duration-300">Help Center</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-primary-600 transition-colors duration-300">Contact Us</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
-                        <ul class="mt-4 space-y-4">
-                            <li><a href="#" class="text-base text-gray-500 hover:text-gray-900">Privacy Policy</a></li>
-                            <li><a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms of Service</a></li>
+                        <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Legal</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-600 hover:text-primary-600 transition-colors duration-300">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-primary-600 transition-colors duration-300">Terms of Service</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="mt-8 border-t border-gray-200 pt-8">
-                    <p class="text-base text-gray-400 text-center">
-                        &copy; {{ date('Y') }} ComplaintHub. All rights reserved.
+                <div class="mt-12 pt-8 border-t border-gray-200">
+                    <p class="text-gray-500 text-center text-sm">
+                        &copy; {{ date('Y') }} ComplaintHub. All rights reserved. Built with care and attention to detail.
                     </p>
                 </div>
             </div>
