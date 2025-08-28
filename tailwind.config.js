@@ -20,6 +20,38 @@ module.exports = {
           800: '#075985',
           900: '#0c4a6e',
         },
+        accent: {
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#22c55e',
+          600: '#16a34a',
+          700: '#15803d',
+          800: '#166534',
+          900: '#14532d',
+        },
+        soft: {
+          blue: {
+            50: '#f0f9ff',
+            100: '#e0f2fe',
+            500: '#06b6d4',
+            600: '#0891b2',
+          },
+          purple: {
+            50: '#faf5ff',
+            100: '#f3e8ff',
+            500: '#8b5cf6',
+            600: '#7c3aed',
+          },
+          pink: {
+            50: '#fdf2f8',
+            100: '#fce7f3',
+            500: '#ec4899',
+            600: '#db2777',
+          },
+        },
         secondary: {
           50: '#f8fafc',
           100: '#f1f5f9',
@@ -34,7 +66,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Nunito', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
     },
   },
